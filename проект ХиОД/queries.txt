@@ -1,0 +1,21 @@
+a)
+--Последний релиз исполнителя, чья песня на 1-м месте в чарте
+SELECT latest_release FROM artists WHERE musician = 
+(SELECT musician FROM song WHERE songid = 
+(SELECT songid FROM chart WHERE place_on_the_chart = '1'));
+
+b)
+-- Вся информация по номеру песни  
+SELECT * FROM song WHERE songid = '4';
+
+c)
+-- Количество песен в жанре поп 
+SELECT COUNT(*) FROM song WHERE song_genre = 'Поп';
+
+d)
+-- Cписок альбомов типа сингл в чарте 
+SELECT album FROM album_info WHERE count_of_songs = '1';
+
+e)
+-- Cписок песен, которые идут дольше 2-х минут 
+SELECT song_name FROM chart WHERE songid in (SELECT songid FROM song WHERE duration > '00:02:00');
